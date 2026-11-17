@@ -16,7 +16,11 @@ a.navbar-brand {
 a {
   color: #0366d6;
 }
-
+.highlight{
+    background-color:darkviolet;
+    opacity:0.5;
+    color:white;
+}
 /*.btn-primary {
   color: #fff;
   background-color: #1b6ec2;

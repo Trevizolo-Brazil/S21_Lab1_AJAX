@@ -1,35 +1,62 @@
 ﻿@model IEnumerable<Zombie>
 
+@section Scripts{
+	<script>
+		
+
+		$(".favorite")
+		.on("click", function(){
+			
+			let fav = $(this);
+			let id = fav.attr("id");
+				$.post("/Zombie/Favorite", { "id": id },
+					function(data) {
+						
+						if(data){
+							fav.removeClass("text-dark");
+							fav.addClass("text-primary");
+						}else{
+							fav.removeClass("text-primary");
+							fav.addClass("text-dark");
+						}
+					});
+
+		});
+
+		 
+
+	</script>
+}
 <div class="container p-3">
-    <div class="row pt-4">
-        <div class="col-10">
-            <h2 class="text-primary">@Locals["Title"]</h2>
-        </div>
-        <div class="col-2 text-right">
-            <a asp-action="Create" class="btn btn-success">
-                <i class="fas fa-plus-square"></i>&nbsp;@Locals["New"]
-            </a>
-        </div>
-    </div>
+	<div class="row pt-4">
+		<div class="col-10">
+			<h2 class="text-primary">@Locals["Title"]</h2>
+		</div>
+		<div class="col-2 text-right">
+			<a asp-action="Create" class="btn btn-success">
+				<i class="fas fa-plus-square"></i>&nbsp;@Locals["New"]
+			</a>
+		</div>
+	</div>
 
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <partial name="_ZombieCard" model="item"/>
-        }
-    </div>
+	<div class="row">
+		@foreach (var item in Model)
+		{
+			<partial name="_ZombieCard" model="item" />
+		}
+	</div>
 
-    <div id="showmodal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document" style="background-color:white">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Zombie Details</h4>
-            </div>
-            <div class="container mt-3">
-                <div id="content"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
+	<div id="showmodal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="background-color:white">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">Zombie Details</h4>
+			</div>
+			<div class="container mt-3">
+				<div id="content"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>

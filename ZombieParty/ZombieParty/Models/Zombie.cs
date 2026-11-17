@@ -24,6 +24,11 @@ namespace ZombieParty.Models
         [DisplayName("ForceLevel")]
         public int Force { get; set; }
 
+
+        public bool IsFavorite { get; set; } = false;
+
+
+
         [Display(Name = "Image")]
         [ValidateNever]
         public string Image{ get; set; } = "";
